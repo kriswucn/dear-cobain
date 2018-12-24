@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}} - Cobain</title>
+    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+    <link href="/static/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/flat-ui.css" rel="stylesheet">
+    <link href="/static/favicon.ico" rel="shortcut icon">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation">
+        <a class="navbar-brand" href="/">Flat UI</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+            <ul class="nav navbar-nav mr-auto">
+                <li><a href="#fakelink">Menu Item<span class="navbar-unread">1</span></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Messages</a>
+                    <span class="dropdown-arrow"></span>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+                <li><a href="#fakelink">About Us</a></li>
+            </ul>
+            <form class="navbar-form form-inline my-2 my-lg-0" action="#" role="search">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                        <span class="input-group-btn">
+                      <button type="submit" class="btn"><span class="fui-search"></span></button>
+                    </span>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+    {% block content %}
+    {% endblock %}
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-7">
+                <h3 class="footer-title">Subscribe</h3>
+                <p>Do you like this freebie? Want to get more stuff like this?<br>
+                    Subscribe to designmodo news and updates to stay tuned on great designs.<br>
+                    Go to: <a href="https://designmodo.com/flat-free" target="_blank">designmodo.com/flat-free</a>
+                </p>
+            </div> <!-- /col-7 -->
+
+            <div class="col-5">
+                <div class="footer-banner">
+                    <h3 class="footer-title">Get Flat UI Pro</h3>
+                    <ul>
+                        <li>Tons of Basic and Custom UI Elements</li>
+                        <li>A Lot of Useful Samples</li>
+                        <li>More Vector Icons and Glyphs</li>
+                        <li>Pro Color Swatches</li>
+                        <li>Bootstrap Based HTML/CSS/JS Layout</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="/static/scripts/jquery.js"></script>
+<script src="/static/flat-ui.js"></script>
+</body>
+
+</html>
