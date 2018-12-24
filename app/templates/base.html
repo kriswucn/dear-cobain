@@ -1,77 +1,111 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CoreUI CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
     <title>{{title}} - Cobain</title>
-    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
-    <link href="/static/css/vendor/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/flat-ui.css" rel="stylesheet">
-    <link href="/static/favicon.ico" rel="shortcut icon">
 </head>
-<body>
-<div class="container">
-    <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation">
-        <a class="navbar-brand" href="/">Flat UI</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
-        <div class="collapse navbar-collapse" id="navbar-collapse-01">
-            <ul class="nav navbar-nav mr-auto">
-                <li><a href="#fakelink">Menu Item<span class="navbar-unread">1</span></a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Messages</a>
-                    <span class="dropdown-arrow"></span>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
+<body class="app">
+<div class="container-fluid" style="padding:0">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li><a href="#fakelink">About Us</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
             </ul>
-            <form class="navbar-form form-inline my-2 my-lg-0" action="#" role="search">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
-                        <span class="input-group-btn">
-                      <button type="submit" class="btn"><span class="fui-search"></span></button>
-                    </span>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="app aside-menu-show" style="background-color:#e4e5e6">
+        <div class="app-body">
+            <aside class="aside-menu">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab">
+                            Tab 1
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tab2" role="tab">
+                            Tab 2
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tab3" role="tab">
+                            Tab 3
+                        </a>
+                    </li>
+                </ul>
+                <!-- Tab panes-->
+                <div class="tab-content">
+                    <div class="tab-pane p-3 active" id="tab1" role="tabpanel">
+                        Tab 1 Content
+                    </div>
+                    <div class="tab-pane p-3" id="tab2" role="tabpanel">
+                        Tab 2 Content
+                    </div>
+                    <div class="tab-pane p-3" id="tab3" role="tabpanel">
+                        Tab 3 Content
                     </div>
                 </div>
-            </form>
-        </div><!-- /.navbar-collapse -->
-    </nav>
-    {% block content %}
-    {% endblock %}
-</div>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-7">
-                <h3 class="footer-title">Subscribe</h3>
-                <p>Do you like this freebie? Want to get more stuff like this?<br>
-                    Subscribe to designmodo news and updates to stay tuned on great designs.<br>
-                    Go to: <a href="https://designmodo.com/flat-free" target="_blank">designmodo.com/flat-free</a>
-                </p>
-            </div> <!-- /col-7 -->
-
-            <div class="col-5">
-                <div class="footer-banner">
-                    <h3 class="footer-title">Get Flat UI Pro</h3>
-                    <ul>
-                        <li>Tons of Basic and Custom UI Elements</li>
-                        <li>A Lot of Useful Samples</li>
-                        <li>More Vector Icons and Glyphs</li>
-                        <li>Pro Color Swatches</li>
-                        <li>Bootstrap Based HTML/CSS/JS Layout</li>
-                    </ul>
-                </div>
-            </div>
+            </aside>
+            <!--main container-->
+            <main class="main">
+                {% block content %}
+                {% endblock %}
+            </main>
         </div>
     </div>
-</footer>
-<script src="/static/scripts/jquery.js"></script>
-<script src="/static/flat-ui.js"></script>
-</body>
+</div>
 
+<footer class="app-footer">
+    <div>
+        <a href="https://coreui.io">CoreUI</a>
+        <span>&copy; 2018 creativeLabs.</span>
+    </div>
+    <div class="ml-auto">
+        <span>Powered by</span>
+        <a href="https://coreui.io">CoreUI</a>
+    </div>
+</footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, Bootstrap, then CoreUI  -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/coreui.min.js"></script>
+</body>
 </html>
