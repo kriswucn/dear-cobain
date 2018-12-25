@@ -28,8 +28,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary" value="人证比对">
+                                <input type="button" id="btn_match" class="btn btn-primary" onclick="send_msg()" value="人证比对">
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="text" id="span_score" class="alert"></input>
                         </div>
                     </div>
                 </div>
@@ -37,4 +42,22 @@
         </div>
     </div>
 </div>
+<!--ajax-->
+<script>
+function send_msg(){
+    $.ajax({
+        url: "/api/match",
+        data: '{"uid": 0.95}',
+        type: "post",
+        dataType: "json",
+        processData: false,
+        success: function(data){
+            $("#span_score").val(data.score)
+        },
+        error: function(e){
+
+        }
+    })
+}
+</script>
 {% endblock %}
