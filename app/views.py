@@ -24,9 +24,11 @@ def match():
 @app.route('/api/match', methods=['POST'])
 def api_match():
     if request.method == 'POST':
+        # data = request.get_data().decode('utf-8')
+        # uid = json.loads(data).get('file_idcard')
+        # print(uid)
+        # dd = {'code': 200, 'score': uid, 'time': (time.time() * 1000)}
+        # return jsonify(dd)
+        f1 = request.files['file']
 
-        data = request.get_data().decode('utf-8')
-        uid = json.loads(data).get('uid')
-        print(uid)
-        dd = {'code': 200, 'score': uid, 'time': (time.time() * 1000)}
-        return jsonify(dd)
+        return jsonify({'score': 0.97})

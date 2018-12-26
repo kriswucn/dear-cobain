@@ -6,21 +6,21 @@
             <div class="card-header">
                 <strong>人证比对</strong>
             </div>
-            <form action="/match" method="post">
+            <form action="/match" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txt_idcard"><strong>身份证图片</strong></label>
-                                <input type="file" class="form-control-file" id="txt_idcard">
+                                <label for="file_idcard"><strong>身份证图片</strong></label>
+                                <input type="file" class="form-control-file" id="file_idcard">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txt_live"><strong>现场图片</strong></label>
-                                <input type="file" class="form-control-file" id="txt_live">
+                                <label for="file_live"><strong>现场图片</strong></label>
+                                <input type="file" class="form-control-file" id="file_live">
                             </div>
                         </div>
 
@@ -28,7 +28,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="button" id="btn_match" class="btn btn-primary" onclick="send_msg()" value="人证比对">
+                                <input type="button" id="btn_match" class="btn btn-primary" onclick="send_msg()"
+                                       value="人证比对">
                             </div>
                         </div>
                     </div>
@@ -45,11 +46,14 @@
 <!--ajax-->
 <script>
 function send_msg(){
+    var formData = new FormData();
+    formData.append("file_idcard", document.getElementById("file_idcard").files[0]);
+    formData.append("file_live", document.getElementById("file_live").files[0]);
+    console.log(formData);
     $.ajax({
         url: "/api/match",
-        data: '{"uid": 0.95}',
+        data: formData,
         type: "post",
-        dataType: "json",
         processData: false,
         success: function(data){
             $("#span_score").val(data.score)
@@ -59,5 +63,7 @@ function send_msg(){
         }
     })
 }
+
+
 </script>
 {% endblock %}
