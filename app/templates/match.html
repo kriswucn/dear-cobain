@@ -12,7 +12,8 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="file_idcard"><strong>身份证图片</strong></label>
-                                <input type="file" class="form-control-file" id="file_idcard">
+                                <input type="file" class="form-control-file" accept="image/jpeg,image/png,image/gif"
+                                       id="file_idcard">
                             </div>
                         </div>
                     </div>
@@ -20,7 +21,8 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="file_live"><strong>现场图片</strong></label>
-                                <input type="file" class="form-control-file" id="file_live">
+                                <input type="file" class="form-control-file" accept="image/jpeg,image/png,image/gif"
+                                       id="file_live">
                             </div>
                         </div>
 
@@ -28,9 +30,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="button" id="btn_match" class="btn btn-primary"
-                                       data-style="expand-left" onclick="send_msg()"
-                                       value="人证比对">
+                                <button type="button" id="btn_match" class="btn btn-brand btn-primary" onclick="send_msg()">
+                                    <i class="fa fa-play-circle"></i><span>人证比对</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -47,6 +49,7 @@
 <!--ajax-->
 <script>
 function send_msg(){
+    $('#msg_box').val('')
     $("#btn_match").removeClass("btn-primary");
     $("#btn_match").addClass("btn-danger");
     var formData = new FormData();
@@ -70,6 +73,7 @@ function send_msg(){
         }
     })
 }
+
 
 
 
