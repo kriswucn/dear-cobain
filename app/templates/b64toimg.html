@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>Base64转图片</strong>
+            </div>
+            <form action="/b64toimg" method="post">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txt_b64"><strong>Base64编码</strong></label>
+                                <textarea class="form-control" id="txt_b64" rows="6"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" id="btn_transfer" class="btn btn-brand btn-primary"
+                                        onclick="send_msg()">
+                                    <i class="fa fa-play-circle"></i><span>转换</span>
+                                </button>
+                            </div>
+                            <div id="msg_box" class="alert alert-primary" role="alert" style="display: none;">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="" alt="" id="img_b64" class="img-thumbnail" style="max-height: 600px;">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--ajax-->
+<script>
+function send_msg(){
+    $("#msg_box").hide();
+    $("#img_b64").hide();
+    $("#btn_transfer").removeClass("btn-primary");
+    $("#btn_transfer").addClass("btn-danger");
+    var formData = new FormData();
+    b64 = $("#txt_b64").val();
+    formData.append("b64", b64);
+    $.ajax({
+        url:"/b64toimg",
+        data:formData,
+        type:"POST",
+        cache:false,
+        processData:false,
+        contentType:false,
+        success:function(data){
+            $("#btn_transfer").removeClass("btn-danger");
+            $("#btn_transfer").addClass("btn-primary");
+            $("#msg_box").html(data.msg);
+            $("#msg_box").show();
+            $("#img_b64").attr("src", data.img_path);
+            $("#img_b64").show();
+        },
+        error: function(e){
+
+        }
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+{% endblock %}

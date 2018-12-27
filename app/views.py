@@ -6,6 +6,8 @@ from app.helpers import match as mth
 from app.helpers import liveness as lv
 import json
 from flask import jsonify
+import base64
+import time
 
 
 @app.route('/')
@@ -26,6 +28,23 @@ def match():
 def liveness():
     if request.method == 'GET':
         return render_template('liveness.html', title='活体检测')
+
+
+@app.route('/b64toimg', methods=['GET', 'POST'])
+def b64toimg():
+    if request.method == 'GET':
+        return render_template('b64toimg.html', title='Base64转图片')
+    elif request.method == 'POST':
+        b64 = request.form.get('b64')
+        # 转换成图片并保存
+        try:
+            img_name = '%s.jpg' % int(time.time())
+            img_path = os.path.join(os.getcwd(), 'app/static/resources', img_name)
+            with open(img_path, 'wb') as ff:
+                ff.write(base64.b64decode(b64))
+            return jsonify({'msg': "transfer successfully.", "img_path": 'static/resources/%s' % img_name})
+        except:
+            return jsonify({'msg': 'transfer failed.', "img_path": ""})
 
 
 # 接口
