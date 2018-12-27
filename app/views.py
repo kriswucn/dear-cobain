@@ -44,7 +44,7 @@ def b64toimg():
                 ff.write(base64.b64decode(b64))
             return jsonify({'msg': "transfer successfully.", "img_path": 'static/resources/%s' % img_name})
         except:
-            return jsonify({'msg': 'transfer failed.', "img_path": ""})
+            return jsonify({'msg': 'transfer failed.', "img_path": "static/resources/null.jpg"})
 
 
 # 接口
