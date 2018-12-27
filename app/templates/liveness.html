@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>活体检测</strong>
+            </div>
+            <form action="/match" method="post">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="file_img"><strong>图片</strong></label>
+                                <input type="file" class="form-control-file" accept="image/jpeg,image/png,image/gif"
+                                       id="file_img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button type="button" id="btn_match" class="btn btn-brand btn-primary" onclick="send_msg()">
+                                    <i class="fa fa-play-circle"></i><span>活体检测</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="text" id="msg_box" class="alert"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--ajax-->
+<script>
+function send_msg(){
+    $('#msg_box').val('')
+    $("#btn_match").removeClass("btn-primary");
+    $("#btn_match").addClass("btn-danger");
+    var formData = new FormData();
+    formData.append("file_img", document.getElementById("file_img").files[0]);
+    console.log(document.getElementById("file_img").files[0]);
+    $.ajax({
+        url:"/api/liveness",
+        data:formData,
+        type:"POST",
+        cache:false,
+        processData:false,
+        contentType:false,
+        success:function(data){
+            $("#btn_match").removeClass("btn-danger");
+            $("#btn_match").addClass("btn-primary");
+            $("#msg_box").val(data.msg)
+        },
+        error: function(e){
+
+        }
+    })
+}
+
+
+
+
+
+
+</script>
+{% endblock %}
