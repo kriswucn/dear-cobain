@@ -47,6 +47,22 @@ def b64toimg():
             return jsonify({'msg': 'transfer failed.', "img_path": "static/resources/null.jpg"})
 
 
+@app.route('/imgtob64', methods=['GET', 'POST'])
+def imgtob64():
+    if request.method == 'GET':
+        return render_template('imgtob64.html', title="图片转base64")
+    elif request.method == 'POST':
+        # return jsonify({'msg': "transfer successfully.", "base64": 'BASE64CODE.........'})
+        img_file = request.files['file_img']
+        img_file_path = os.path.join(os.getcwd(), r'app/static/resources', img_file.filename)
+        img_file.save(img_file_path)
+        # 转换base64
+        b64_code = ''
+        with open(img_file_path, 'rb') as ff:
+            b64_code = str(base64.b64encode(ff.read()), encoding='utf-8')
+        return jsonify({'msg': "transfer successfully.", "base64": b64_code})
+
+
 # 接口
 @app.route('/api/match', methods=['POST'])
 def api_match():
