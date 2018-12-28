@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>图片转base64</strong>
+            </div>
+            <form action="/match" method="post">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="file_img"><strong>图片</strong></label>
+                                <input type="file" class="form-control-file" accept="image/jpeg,image/png,image/gif"
+                                       id="file_img">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" id="btn_match" class="btn btn-brand btn-primary"
+                                        onclick="send_msg()">
+                                    <i class="fa fa-play-circle"></i><span>转换</span>
+                                </button>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div id="msg_box" class="alert alert-primary" role="alert" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txt_b64"><strong>Base64编码</strong></label>
+                                <textarea class="form-control" id="txt_b64" rows="6"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--ajax-->
+<script>
+function send_msg(){
+    $("#msg_box").hide();
+    $("#btn_match").removeClass("btn-primary");
+    $("#btn_match").addClass("btn-danger");
+    var formData = new FormData();
+    formData.append("file_img", document.getElementById("file_img").files[0]);
+    console.log(document.getElementById("file_img").files[0]);
+    $.ajax({
+        url:"/imgtob64",
+        data:formData,
+        type:"POST",
+        cache:false,
+        processData:false,
+        contentType:false,
+        success:function(data){
+            $("#btn_match").removeClass("btn-danger");
+            $("#btn_match").addClass("btn-primary");
+            $("#msg_box").html(data.msg);
+            $("#msg_box").show();
+            $("#txt_b64").val(data.base64);
+        },
+        error: function(e){
+
+        }
+    })
+}
+
+
+
+
+
+
+
+
+
+
+</script>
+{% endblock %}
