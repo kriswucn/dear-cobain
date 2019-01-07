@@ -68,6 +68,13 @@ def imgtob64():
         return jsonify({'msg': "transfer successfully.", "base64": b64_code})
 
 
+# json字符串格式化
+@app.route('/format', methods=['GET'])
+def format_json():
+    if request.method == 'GET':
+        return render_template('format.html', title='Json字符串格式化')
+
+
 # ajax接口
 @app.route('/api/match', methods=['POST'])
 def api_match():
@@ -118,3 +125,11 @@ def api_liveness():
             error_msg = d_result.get('error_msg')
             print(error_msg)
             return jsonify({'msg': error_msg})
+
+
+@app.route('/api/format', methods=['POST'])
+def json_format():
+    if request.method == 'POST':
+        src_json = request.form.get('j')
+    temp_dict = json.loads(src_json)
+    return jsonify({'dest_json': json.dumps(temp_dict, indent=4)})
