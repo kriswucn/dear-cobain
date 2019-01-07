@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">Json格式化</div>
+            <div class="card-body">
+                <form action="/api/format" method="post">
+                    <div class="row">
+                        <!--原json-->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="txt_src"><strong>原Json</strong></label>
+                                <textarea class="form-control" id="txt_src" rows="6"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <button id="btn_match" class="btn  btn-primary" type="button" onclick="send_msg()">
+                                    <i class="fa fa-dot-circle-o"></i> 转换
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--格式化后-->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="txt_dest"><strong>Json</strong></label>
+                                <textarea class="form-control" id="txt_dest" rows="20"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--ajax-->
+<script>
+function send_msg(){
+    var formData = new FormData();
+    j = $("#txt_src").val();
+    formData.append("j", j);
+    $.ajax({
+        url:"/api/format",
+        data:formData,
+        type:"POST",
+        cache:false,
+        processData:false,
+        contentType:false,
+        success:function(data){
+            $("#txt_dest").html(data.dest_json);
+        },
+        error: function(e){
+
+        }
+    })
+}
+</script>
+{% endblock %}
