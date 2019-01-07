@@ -23,16 +23,19 @@
                             <div class="form-group">
 
                                 <div class="form-group">
-                                <button id="btn_match" class="btn  btn-primary" type="button" onclick="send_msg()">
-                                    <i class="fa fa-dot-circle-o"></i> 活体检测
-                                </button>
-                            </div>
+                                    <button id="btn_match" class="btn  btn-primary" type="button" onclick="send_msg()">
+                                        <i class="fa fa-dot-circle-o"></i> 活体检测
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
                             <input type="text" id="msg_box" class="alert"/>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="txt_duration" class="alert"/>
                         </div>
                     </div>
                 </div>
@@ -59,13 +62,15 @@ function send_msg(){
         success:function(data){
             $("#btn_match").removeClass("btn-danger");
             $("#btn_match").addClass("btn-primary");
-            $("#msg_box").val(data.msg)
+            $("#msg_box").val('Score: ' + data.msg);
+            $("#txt_duration").val('Duration: ' + data.duration + 'ms')
         },
         error: function(e){
 
         }
     })
 }
+
 
 
 
