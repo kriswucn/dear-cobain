@@ -4,6 +4,7 @@ from flask import request
 import os
 from app.helpers import match as mth
 from app.helpers import liveness as lv
+from app.helpers import gen_ic_num
 import json
 from flask import jsonify
 import base64
@@ -73,6 +74,18 @@ def imgtob64():
 def format_json():
     if request.method == 'GET':
         return render_template('format.html', title='Json字符串格式化')
+
+
+# 身份证生成
+@app.route('/icnum', methods=['GET', 'POST'])
+def ic_num():
+    if request.method == 'GET':
+        return render_template('icnum.html', title='身份证号生成')
+    elif request.method == 'POST':
+        gender = request.values.get('sel_gender')
+        i_gender = int(gender)
+        num = gen_ic_num(i_gender)
+        return render_template('icnum.html', title='身份证号生成', ic_num=num)
 
 
 # ajax接口
