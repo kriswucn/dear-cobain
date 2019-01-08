@@ -146,3 +146,12 @@ def json_format():
         src_json = request.form.get('j')
     temp_dict = json.loads(src_json)
     return jsonify({'dest_json': json.dumps(temp_dict, indent=4)})
+
+
+@app.route('/api/icnum', methods=["POST"])
+def api_icnum():
+    if request.method == 'POST':
+        gender = request.values.get('sel_gender')
+        i_gender = int(gender)
+        num = gen_ic_num(i_gender)
+        return jsonify({'ic_num': num})
