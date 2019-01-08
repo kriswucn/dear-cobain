@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>身份证号生成</strong>
+            </div>
+            <form action="/icnum" method="post">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label for="sel_gender">性别</label>
+                                <select id="sel_gender" class="form-control" name="sel_gender">
+                                    <option value="1">男</option>
+                                    <option value="0">女</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <input class="form-control" id="txt_num" type="text" name="txt_num" value="{{ic_num}}">
+                                <span class="input-group-append">
+                              <button class="btn btn-primary" type="submit">随机</button>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
