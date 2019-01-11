@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>日期转时间戳</strong>
+            </div>
+            <form action="/api/totimestamp" method="post">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txt_date">日期</label>
+                                <input class="form-control" id="txt_date" value="{{j.dt}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <input type="button" class="btn btn-primary" id="btn_date_to_ts" value="转换">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="switch switch-3d switch-primary">毫秒
+                                <input class="switch-input" type="checkbox" checked="">
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <lable for="txt_ts">时间戳</lable>
+                                <input class="form-control" id="txt_ts" value="{{j.ts}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>时间戳转日期</strong>
+            </div>
+            <form action="/api/todate" method="post">
+                <div class="card-body">
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--ajax-->
+<script>
+    function send_msg() {
+        $('#msg_box').val('')
+        $("#btn_match").removeClass("btn-primary");
+        $("#btn_match").addClass("btn-danger");
+        var formData = new FormData();
+        formData.append("file_img", document.getElementById("file_img").files[0]);
+        console.log(document.getElementById("file_img").files[0]);
+        $.ajax({
+            url: "/api/liveness",
+            data: formData,
+            type: "POST",
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                $("#btn_match").removeClass("btn-danger");
+                $("#btn_match").addClass("btn-primary");
+                $("#msg_box").val('Score: ' + data.msg);
+                $("#txt_duration").val('Duration: ' + data.duration + 'ms')
+            },
+            error: function (e) {
+
+            }
+        })
+    }
+</script>
+{% endblock %}
