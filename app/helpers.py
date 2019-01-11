@@ -6,6 +6,8 @@ import json
 import random
 from datetime import date
 from datetime import timedelta
+import time
+import datetime
 
 
 def img_to_base64(full_img):
@@ -41,7 +43,6 @@ def liveness(full_img):
 
 # 身份证号生成器
 def gen_ic_num(gender):
-    # 获取area_code
     area_dict = {}
     check_code_list = [1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2]
     id_code_list = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
@@ -67,6 +68,13 @@ def gen_ic_num(gender):
     return ic_num
 
 
+# 日期转时间戳
+def date_to_timestamp(str_date):
+    time_arr = time.strptime(str_date, '%Y-%m-%d %H:%M:%S')
+    return time_arr
+
+
 if __name__ == '__main__':
-    r = gen_ic_num(0)
-    print(r)
+    d = '2019-01-03 12:23:45'
+    arr = date_to_timestamp(d)
+    print(arr)
