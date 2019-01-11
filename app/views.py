@@ -88,6 +88,16 @@ def ic_num():
         return render_template('icnum.html', title='身份证号生成', ic_num=num)
 
 
+# 时间时间戳
+@app.route('/tsconvert', methods=['GET'])
+def ts_convert():
+    if request.method == 'GET':
+        dt = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        ts = time.time()
+        return render_template('tsconvert.html', title='时间时间戳转换', j={"dt": dt, "ts": ts})
+
+
+# ========================================================================== #
 # ajax接口
 @app.route('/api/match', methods=['POST'])
 def api_match():
