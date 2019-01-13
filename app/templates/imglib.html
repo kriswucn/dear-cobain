@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>图片库测试</strong>
+            </div>
+            <form action="/" method="post">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto">
+                            <img class="img-thumbnail" src="/static/img-lib/d1/31_8080_1497573913643_t_230068696013.jpg"
+                                style="max-height: 600px">
+
+                            <div class="alert alert-success" role="alert" style="margin:20px;">
+                                45678-frttt-5542
+                            </div>
+                            <div class="row" style="margin: 20px">
+                                <div class="col-auto  mr-auto">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-success">
+                                            <input type="radio" name="manual_chk" id="yes" autocomplete="off">
+                                            正确
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" name="manual_chk" id="no" autocomplete="off"> 错误
+                                        </label>
+                                        <label class="btn btn-secondary">
+                                            <input type="radio" name="manual_chk" id="na" autocomplete="off"> 不确定
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-primary">
+                                            <input type="radio" name="wizard" id="previous" autocomplete="off">
+                                            上一张
+                                        </label>
+                                        <label class="btn btn-primary">
+                                            <input type="radio" name="wizard" id="next" autocomplete="off">下一张
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <img class="img-thumbnail" src="/static/img-lib/d2/31_8080_1497573913643_t_230068696013.jpg"
+                                style="max-height: 600px">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--ajax-->
+<script>
+
+</script>
+{% endblock %}
