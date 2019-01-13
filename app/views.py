@@ -34,6 +34,13 @@ def liveness():
         return render_template('liveness.html', title='活体检测')
 
 
+# 图片库测试
+@app.route('/imglib', methods=['GET', 'POST'])
+def imglib():
+    if request.method == 'GET':
+        return render_template('imglib.html', title='图片库测试')
+
+
 # base64转图片
 @app.route('/b64toimg', methods=['GET', 'POST'])
 def b64toimg():
