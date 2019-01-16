@@ -10,6 +10,7 @@ from flask import jsonify
 import base64
 import time
 import datetime
+import requests
 
 
 @app.route('/')
@@ -95,6 +96,25 @@ def ts_convert():
         dt = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         ts = time.time()
         return render_template('tsconvert.html', title='时间时间戳转换', j={"dt": dt, "ts": ts})
+
+
+# 图片服务显示
+@app.route('/showimg', methods=['GET', 'POST'])
+def show_img():
+    if request.method == 'GET':
+        return render_template('showimg.html', title='图片显示')
+    elif request.method == 'POST':
+        img_id = request.values.get('img_id')
+        url = 'http://192.168.2.210:8081/tce-save2hbase/image/getImage?id=%s' % img_id
+        resp = requests.get(url)
+        save_path = os.path.join(os.getcwd(), 'app/static/resources', img_id + '.jpg')
+
+        with open(save_path, 'wb') as ff:
+            ff.write(resp.content)
+
+        rel_path = '/static/resources/%s.jpg' % img_id
+
+        return render_template('showimg.html', title='图片显示', img_path=rel_path)
 
 
 # ========================================================================== #
