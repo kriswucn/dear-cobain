@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>UUID</strong>
+            </div>
+            <form action="/uuid" method="post">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txt_uuid"><strong>UUID</strong></label>
+                                <input class="form-control" id="txt_uuid" value="{{uid}}"></input>
+                            </div>
+                            <div class="form-group">
+                                <a id="btn_transfer" class="btn  btn-primary" href="/uuid">
+                                    <i class="fa fa-dot-circle-o"></i> 获取
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
