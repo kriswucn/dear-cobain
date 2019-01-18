@@ -11,6 +11,7 @@ import base64
 import time
 import datetime
 import requests
+import uuid
 
 
 @app.route('/')
@@ -112,7 +113,7 @@ def show_img():
         return render_template('showimg.html', title='图片显示')
     elif request.method == 'POST':
         img_id = request.values.get('img_id')
-        url = 'http://192.168.2.210:8081/tce-save2hbase/image/getImage?id=%s' % img_id
+        url = 'http://192.168.2.210:8081/tce-save2hbase/image/getImage?space=s1&tableName=tce_image&id=%s' % img_id
         resp = requests.get(url)
         save_path = os.path.join(os.getcwd(), 'app/static/resources', img_id + '.jpg')
 
@@ -122,6 +123,33 @@ def show_img():
         rel_path = '/static/resources/%s.jpg' % img_id
 
         return render_template('showimg.html', title='图片显示', img_path=rel_path)
+
+
+# 缩略图显示
+@app.route('/showthumb', methods=['GET', 'POST'])
+def show_thumb():
+    if request.method == 'GET':
+        return render_template('showthumb.html', title='图片显示')
+    elif request.method == 'POST':
+        img_id = request.values.get('img_id')
+        url = 'http://192.168.2.210:8081/tce-save2hbase/image/getImageSmall?space=s1&tableName=tce_image&id=%s' % img_id
+        resp = requests.get(url)
+        save_path = os.path.join(os.getcwd(), 'app/static/resources', img_id + '_s.jpg')
+
+        with open(save_path, 'wb') as ff:
+            ff.write(resp.content)
+
+        rel_path = '/static/resources/%s_s.jpg' % img_id
+
+        return render_template('showthumb.html', title='图片显示', img_path=rel_path)
+
+
+# 生成uuid
+@app.route('/uuid', methods=['GET'])
+def get_uuid():
+    if request.method == 'GET':
+        str_uuid = str.replace(str(uuid.uuid4()), '-', '')
+        return render_template('uuid.html', title='UUID', uid=str_uuid)
 
 
 # ========================================================================== #
