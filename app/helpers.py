@@ -7,7 +7,7 @@ import random
 from datetime import date
 from datetime import timedelta
 import time
-import datetime
+from configparser import ConfigParser
 
 
 def img_to_base64(full_img):
@@ -27,6 +27,7 @@ def match(full_img1, full_img2):
              'liveness_control': 'NONE'}]
 
     url = 'http://192.168.8.202:8300/face-api/v3/face/match?appid=app01'
+    # url = 'http://58.209.250.207:3389/face-api/v3/face/match?appid=app01'
     resp = requests.post(url=url, json=body, headers={'Content-Type': 'application/json'})
     print(resp.text)
     return resp.text
@@ -37,6 +38,7 @@ def liveness(full_img):
 
     body = [{'image': b, 'image_type': 'BASE64', 'face_field': ''}]
     url = 'http://192.168.8.202:8300/face-api/v3/face/liveness?appid=app01'
+    # url = 'http://58.209.250.207:3389/face-api/v3/face/liveness?appid=app01'
     resp = requests.post(url=url, json=body, headers={'Content-Type': 'application/json'})
     return resp.text
 
@@ -74,7 +76,23 @@ def date_to_timestamp(str_date):
     return time_arr
 
 
+# 读取配置文件
+def get_conf(section, item):
+    conf = ConfigParser()
+    conf.read(os.path.join(os.getcwd(), 'app/application.conf'))
+    return conf.get(section, option=item)
+
+
+# 接口获取的二进制图片转换成base64编码
+def get_base64_by_url(url):
+    resp = requests.get(url)
+    bin_img = resp.content
+    b64_img = base64.b64encode(bin_img)
+
+    return str(b64_img, encoding='utf-8')
+
+
 if __name__ == '__main__':
-    d = '2019-01-03 12:23:45'
-    arr = date_to_timestamp(d)
-    print(arr)
+    url = 'http://192.168.2.212:8080/tce-blobStore/blobStoreApi/getBlob?tableName=image&id=head-023023_1552985164_20190319164604_00000000&store=hbase&dataType=1&space=jsiot'
+    ii = get_base64_by_url(url)
+    print(ii)

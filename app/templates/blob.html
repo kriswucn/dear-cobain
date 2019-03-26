@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>大数据查看器</strong>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/blob">
+                    <div class="form-group">
+                        <label class="sr-only" for="txt_base_url">Base Url</label>
+                        <input type="text" class="form-control" id="txt_base_url" placeholder="Base Url"
+                               value="{{blob_conf.get('baseUrl')}}">
+                    </div>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label class="sr-only" for="txt_space">Base Url</label>
+                            <input type="text" class="form-control" id="txt_space" placeholder="Space"
+                                   value="{{blob_conf.get('space')}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="txt_table_name">Base Url</label>
+                            <input type="text" class="form-control" id="txt_table_name" placeholder="Table Name"
+                                   value="{{blob_conf.get('tableName')}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="txt_data_type">Base Url</label>
+                            <input type="text" class="form-control" id="txt_data_type" placeholder="Data Type"
+                                   value="{{blob_conf.get('dataType')}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="txt_store">Base Url</label>
+                            <input type="text" class="form-control" id="txt_store" placeholder="Store"
+                                   value="{{blob_conf.get('store')}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="txt_id">Base Url</label>
+                            <input type="text" class="form-control" name="txt_id" id="txt_id" placeholder="图片ID"
+                                    value="{{blob_conf.get('id')}}">
+                        </div>
+                        <div class="form-group">
+                            <button id="btn_transfer" class="btn  btn-primary" type="submit">
+                                <i class="fa fa-dot-circle-o"></i> 查询
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="{{b64_img}}" alt="" id="pic" class="img-thumbnail" style="max-height: 600px;">
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
